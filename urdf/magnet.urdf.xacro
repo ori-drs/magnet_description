@@ -14,7 +14,7 @@
         <material name="darkgrey">
             <color rgba="0.3 0.3 0.3 1"/>
         </material>
-        <origin xyz="-0.055 0.055 0" rpy="${pi/2} 0 0"/>
+        <origin xyz="-0.055 -0.055 0" rpy="${pi/2} 0 ${pi/2}"/>
         <geometry>
           <mesh filename="file://$(find magnet_description)/meshes/visual/case.stl" scale="0.001 0.001 0.001"/>
         </geometry>
@@ -24,7 +24,7 @@
     <xacro:include filename="$(find microstrain_inertial_description)/urdf/gx5_15.urdf.xacro"/>
 
     <xacro:gx5_15 name="${prefix}gx5_15" parent="${prefix}magnet">
-      <origin xyz="0.0 -0.0058 0.0574" rpy="0 0 ${-pi/2}" />
+      <origin xyz="0.0058 0.0 0.0574" rpy="0 0 0" />
     </xacro:gx5_15>
 
     <link name="heatsink">
@@ -32,7 +32,7 @@
         <material name="silver">
             <color rgba="0.7 0.7 0.7 1"/>
         </material>
-        <origin xyz="-0.055 0.055 0" rpy="${pi/2} 0 0"/>
+        <origin xyz="-0.055 -0.055 0" rpy="${pi/2} 0 ${pi/2}"/>
         <geometry>
           <mesh filename="file://$(find magnet_description)/meshes/visual/heatsink.stl" scale="0.001 0.001 0.001"/>
         </geometry>
@@ -48,7 +48,7 @@
     <xacro:include filename="$(find hesai_description)/urdf/hesai_qt64.urdf.xacro"/>
 
     <xacro:hesai_qt64 name="${prefix}hesai_qt64" parent="${prefix}magnet" simulation="${simulation}" use_gpu="${use_gpu}">
-      <origin xyz="0 0 0.072" rpy="0 0 0" />
+      <origin xyz="0 0 0.072" rpy="0 0 ${pi/2}" />
     </xacro:hesai_qt64>
 
   </xacro:macro>
