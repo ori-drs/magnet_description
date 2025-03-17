@@ -3,13 +3,13 @@
 
   <xacro:macro name="magnet" params="parent *origin prefix:='' name:=magnet
                                      simulation:=false use_gpu:=true">
-    <joint name="${parent}_to_${prefix}magnet" type="fixed">
+    <joint name="${parent}_to_${prefix}magnet_mount" type="fixed">
       <xacro:insert_block name="origin"/>
       <parent link="${parent}" />
-      <child link="${prefix}magnet" />
+      <child link="${prefix}magnet_mount" />
     </joint>
 
-    <link name="${prefix}magnet">
+    <link name="${prefix}magnet_mount">
       <visual>
         <material name="darkgrey">
             <color rgba="0.3 0.3 0.3 1"/>
@@ -23,7 +23,7 @@
 
     <xacro:include filename="$(find microstrain_inertial_description)/urdf/gx5_15.urdf.xacro"/>
 
-    <xacro:gx5_15 name="${prefix}gx5_15" parent="${prefix}magnet">
+    <xacro:gx5_15 name="${prefix}gx5_15" parent="${prefix}magnet_mount">
       <origin xyz="0.0058 0.0 0.0574" rpy="0 0 0" />
     </xacro:gx5_15>
 
@@ -39,17 +39,27 @@
       </visual>
     </link>
 
-    <joint name="${prefix}magnet_to_${prefix}heatsink" type="fixed">
+    <joint name="${prefix}magnet_mount_to_${prefix}heatsink" type="fixed">
       <origin xyz="0 0 0.069" rpy="0 0 0" />
-      <parent link="${prefix}magnet" />
+      <parent link="${prefix}magnet_mount" />
       <child link="${prefix}heatsink" />
     </joint>
 
     <xacro:include filename="$(find hesai_description)/urdf/hesai_qt64.urdf.xacro"/>
 
-    <xacro:hesai_qt64 name="${prefix}hesai_qt64" parent="${prefix}magnet" simulation="${simulation}" use_gpu="${use_gpu}">
-      <origin xyz="0 0 0.072" rpy="0 0 ${pi/2}" />
+    <!-- The height of the Magnet 3D-printed case: From bottom of case to the top of the lidar plate -->
+    <xacro:property name="magnet_case_height" value="0.072"/>
+
+    <xacro:hesai_qt64 name="${prefix}hesai_qt64" parent="${prefix}magnet_mount" simulation="${simulation}" use_gpu="${use_gpu}">
+      <origin xyz="0 0 ${magnet_case_height}" rpy="0 0 ${pi/2}" />
     </xacro:hesai_qt64>
+
+    <link name="${prefix}magnet_base" />
+    <joint name="${prefix}magnet_mount_to_${prefix}magnet_base" type="fixed">
+      <parent link="${prefix}magnet_mount" />
+      <child link="${prefix}magnet_base" />
+      <origin xyz="0 0 ${magnet_case_height}" rpy="0 0 0" />
+    </joint>
 
   </xacro:macro>
 
