@@ -63,10 +63,6 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        base:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         gx5_15:
           Alpha: 1
           Show Axes: false
@@ -81,11 +77,24 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        magnet:
+        hesai_base:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
+        magnet_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        pandar:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        root:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Mass Properties:
         Inertia: false
         Mass: false
@@ -99,15 +108,19 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        base:
-          Value: true
         gx5_15:
           Value: true
         gx5_15_center:
           Value: true
         heatsink:
           Value: true
-        magnet:
+        hesai_base:
+          Value: true
+        magnet_mount:
+          Value: true
+        pandar:
+          Value: true
+        root:
           Value: true
       Marker Scale: 0.5
       Name: TF
@@ -115,19 +128,22 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        base:
-          magnet:
+        root:
+          magnet_mount:
             gx5_15_center:
               gx5_15:
                 {}
             heatsink:
               {}
+            hesai_base:
+              pandar:
+                {}
       Update Interval: 0
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: base
+    Fixed Frame: root
     Frame Rate: 30
   Name: root
   Tools:
