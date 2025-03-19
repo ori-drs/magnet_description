@@ -26,3 +26,14 @@ For visualizing the URDF with RViz launch:
 $ ros2 launch magnet_description visualize.launch.py
 ```
 
+The simulation with Gazebo can be tested by launching:
+
+```bash
+$ ros2 launch magnet_description simulate.launch.py
+```
+
+For the latter you will have to install the following dependencies:
+
+```bash
+$ sudo apt-get install ros-$ROS_DISTRO-gazebo-ros ros-$ROS_DISTRO-velodyne-gazebo-plugins
+```
