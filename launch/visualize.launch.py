@@ -52,7 +52,7 @@ def generate_launch_description():
         arguments=['--display-config', rviz_file]
     )
     
-    gazebo_classic_node = IncludeLaunchDescription(
+    gazebo_node = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
                 os.path.join(
@@ -63,7 +63,7 @@ def generate_launch_description():
         ),
         condition=IfCondition(simulation)
     )
-    gazebo_classic_spawner_node = Node(
+    gazebo_spawner_node = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
         name='gazebo_spawner',
@@ -76,6 +76,6 @@ def generate_launch_description():
     ld.add_action(simulation_parameter_arg)
     ld.add_action(description_launch)
     ld.add_action(rviz_node)
-    ld.add_action(gazebo_classic_node)
-    ld.add_action(gazebo_classic_spawner_node)
+    ld.add_action(gazebo_node)
+    ld.add_action(gazebo_spawner_node)
     return ld
