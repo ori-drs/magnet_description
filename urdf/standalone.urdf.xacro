@@ -3,12 +3,13 @@
 
   <xacro:arg name="prefix" default="" />
   <xacro:arg name="simulation" default="false" />
+  <xacro:arg name="use_gpu" default="true" />
 
   <xacro:include filename="$(find magnet_description)/urdf/magnet.urdf.xacro" />
 
   <link name="root"/>
 
-  <xacro:magnet parent="root" prefix="$(arg prefix)" simulation="$(arg simulation)" >
+  <xacro:magnet parent="root" prefix="$(arg prefix)" simulation="$(arg simulation)" use_gpu="$(arg use_gpu)" >
     <origin xyz="0 0 0" rpy="0 0 0" />
   </xacro:magnet>
 
