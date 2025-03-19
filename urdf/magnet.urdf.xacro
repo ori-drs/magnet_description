@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="magnet">
 
   <xacro:macro name="magnet" params="parent *origin prefix:='' name:=magnet
-                                     simulation:=false use_gpu:=true">
+                                     simulation:=false">
     <joint name="${parent}_to_${prefix}magnet_mount" type="fixed">
       <xacro:insert_block name="origin"/>
       <parent link="${parent}" />
@@ -50,7 +50,7 @@
     <!-- The height of the Magnet 3D-printed case: From bottom of case to the top of the lidar plate -->
     <xacro:property name="magnet_case_height" value="0.072"/>
 
-    <xacro:hesai_qt64 name="${prefix}hesai_qt64" parent="${prefix}magnet_mount" simulation="${simulation}" use_gpu="${use_gpu}">
+    <xacro:hesai_qt64 name="${prefix}hesai_qt64" parent="${prefix}magnet_mount" simulation="${simulation}" >
       <origin xyz="0 0 ${magnet_case_height}" rpy="0 0 ${pi/2}" />
     </xacro:hesai_qt64>
 
@@ -60,6 +60,11 @@
       <child link="${prefix}magnet_base" />
       <origin xyz="0 0 ${magnet_case_height}" rpy="0 0 0" />
     </joint>
+
+    <xacro:if value="${simulation}">
+      <xacro:include filename="$(find magnet_description)/urdf/gazebo.urdf.xacro"/>
+      <xacro:microstrain_imu_gazebo name="${prefix}imu_sensor" frame_name="imu_link" imu_link="${prefix}gx5_15" topic_name="/imu/data"/>
+    </xacro:if>
 
   </xacro:macro>
 
