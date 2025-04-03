@@ -63,7 +63,7 @@
 
     <xacro:if value="${simulation}">
       <xacro:include filename="$(find magnet_description)/urdf/gazebo.urdf.xacro"/>
-      <xacro:microstrain_imu_gazebo name="${prefix}imu_sensor" frame_name="imu_link" imu_link="${prefix}gx5_15" topic_name="/imu/data"/>
+      <xacro:microstrain_imu_gazebo name="${prefix}imu_sensor" imu_link="${prefix}gx5_15" topic_name="/imu/data"/>
     </xacro:if>
 
   </xacro:macro>
