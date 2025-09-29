@@ -9,8 +9,8 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <exec_depend>hesai_description</exec_depend>
-  <exec_depend>microstrain_inertial_description</exec_depend>
-  <exec_depend>rviz</exec_depend>
-  <exec_depend>xacro</exec_depend>
+  <depend>hesai_description</depend>
+  <depend>microstrain_inertial_description</depend>
+  <depend>rviz</depend>
+  <depend>xacro</depend>
 </package>
