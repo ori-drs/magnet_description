@@ -50,9 +50,9 @@
     <!-- The height of the Magnet 3D-printed case: From bottom of case to the top of the lidar plate -->
     <xacro:property name="magnet_case_height" value="0.072"/>
 
-    <xacro:hesai_qt64 name="${prefix}hesai_qt64" parent="${prefix}magnet_mount" simulation="${simulation}" use_gpu="${use_gpu}">
+    <xacro:hesai_qt64_device name="${prefix}hesai_qt64" parent="${prefix}magnet_mount" simulation="${simulation}" use_gpu="${use_gpu}">
       <origin xyz="0 0 ${magnet_case_height}" rpy="0 0 ${pi/2}" />
-    </xacro:hesai_qt64>
+    </xacro:hesai_qt64_device>
 
     <link name="${prefix}magnet_base" />
     <joint name="${prefix}magnet_mount_to_${prefix}magnet_base" type="fixed">
