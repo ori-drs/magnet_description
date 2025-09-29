@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="rviz"             default="true" />
+  <arg name="simulation"       default="true" />
+  <arg name="calibration_file" default="$(find magnet_description)/urdf/calibrations/default_calibration.yaml" />
+
+  <include file="$(find magnet_description)/launch/description.launch">
+    <arg name="simulation"       value="$(arg simulation)" />
+    <arg name="calibration_file" value="$(arg calibration_file)" />
+  </include>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find magnet_description)/config/model.rviz" />
+</launch>
